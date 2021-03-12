@@ -7,7 +7,7 @@ import {
   // HStack,
   IconButton,
   IconButtonProps,
-  useBreakpointValue,
+  // useBreakpointValue,
   // useColorModeValue,
   // useUpdateEffect,
 } from "@chakra-ui/react"
@@ -58,7 +58,7 @@ interface MobileNavContentProps {
 
 export function MobileNavContent(props: MobileNavContentProps) {
   const { isOpen, onClose } = props
-  const closeBtnRef = React.useRef<HTMLButtonElement>()
+  const closeBtnRef = React.useRef<HTMLButtonElement>(null)
   // const { pathname } = useRouter()
 
   // useRouteChanged(onClose)
@@ -82,8 +82,6 @@ export function MobileNavContent(props: MobileNavContentProps) {
   //     })
   //   }
   // }, [isOpen])
-
-  const [shadow, setShadow] = React.useState<string>()
 
   return (
     <AnimatePresence>
@@ -111,7 +109,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
                 <Flex justify="flex-end">
                   <CloseButton ref={closeBtnRef} onClick={onClose} />
                 </Flex>
-                <Box px="6" pb="6" pt="2" shadow={shadow}>
+                <Box px="6" pb="6" pt="2">
                   <NavLink href="/">Home</NavLink>
                   <NavLink href="/programs">Programs</NavLink>
                   <NavLink href="/event">Event</NavLink>

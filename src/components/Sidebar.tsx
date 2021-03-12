@@ -1,17 +1,17 @@
-import NextLink from "next/link"
+// import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
 import _ from "lodash"
 import {
-  Badge,
+  // Badge,
   Box,
-  Center,
+  // Center,
   chakra,
-  Flex,
-  List,
-  ListItem,
-  ListProps,
-  Stack,
+  // Flex,
+  // List,
+  // ListItem,
+  // ListProps,
+  // Stack,
   useColorModeValue,
 } from "@chakra-ui/react"
 
@@ -20,11 +20,11 @@ import {
 //   contentRef?: any
 // }
 
-export function SidebarContent(props) {
-  const { routes, pathname, contentRef } = props
+export function SidebarContent(props: any) {
+  const { routes } = props
   return (
     <>
-      {routes.map((lvl1, idx) => {
+      {routes.map((lvl1: any, idx: any) => {
         return (
           <React.Fragment key={idx}>
             {lvl1.heading && (
@@ -48,34 +48,34 @@ export function SidebarContent(props) {
   )
 }
 
-const MainNavLink = ({ href, icon, children }) => {
-  const { pathname } = useRouter()
-  const [, group] = href.split("/")
-  const active = pathname.includes(group)
-  const linkColor = useColorModeValue("gray.900", "whiteAlpha.900")
+// const MainNavLink = ({ href, icon, children }: { href: any, icon: any, children: any }) => {
+//   const { pathname } = useRouter()
+//   const [, group] = href.split("/")
+//   const active = pathname.includes(group)
+//   const linkColor = useColorModeValue("gray.900", "whiteAlpha.900")
 
-  return (
-    <NextLink href={href} passHref>
-      <Flex
-        as="a"
-        align="center"
-        fontSize="sm"
-        fontWeight="semibold"
-        transitionProperty="colors"
-        transitionDuration="200ms"
-        color={active ? linkColor : "gray.500"}
-        _hover={{ color: linkColor }}
-      >
-        <Center w="6" h="6" bg="teal.400" rounded="base" mr="3">
-          {icon}
-        </Center>
-        {children}
-      </Flex>
-    </NextLink>
-  )
-}
+//   return (
+//     <NextLink href={href} passHref>
+//       <Flex
+//         as="a"
+//         align="center"
+//         fontSize="sm"
+//         fontWeight="semibold"
+//         transitionProperty="colors"
+//         transitionDuration="200ms"
+//         color={active ? linkColor : "gray.500"}
+//         _hover={{ color: linkColor }}
+//       >
+//         <Center w="6" h="6" bg="teal.400" rounded="base" mr="3">
+//           {icon}
+//         </Center>
+//         {children}
+//       </Flex>
+//     </NextLink>
+//   )
+// }
 
-const Sidebar = ({ routes }) => {
+const Sidebar = ({ routes }: {routes: any}) => {
   const { pathname } = useRouter()
   const ref = React.useRef<HTMLDivElement>(null)
 
