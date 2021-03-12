@@ -3,15 +3,13 @@ import {
   Flex,
   Box,
   Button,
-  Link,
   useDisclosure,
   useUpdateEffect,
-} from "@chakra-ui/react"
-import { useViewportScroll } from "framer-motion"
-import NextLink from "next/link"
-import React from "react"
+} from '@chakra-ui/react'
+import NextLink from 'next/link'
+import React from 'react'
 import Image from 'next/image'
-import { MobileNavButton, MobileNavContent } from "./MobileNav"
+import { MobileNavButton, MobileNavContent } from './MobileNav'
 
 const IKBPLogo = () => (
   <NextLink href="/" passHref>
@@ -29,7 +27,7 @@ interface NavItemProps {
 const NavItem = ({ to, children }: NavItemProps) => (
   <NextLink href={to} passHref>
     <Button
-      bg="ikbppurple.500"
+      bg="darkPurple.900"
       color="white"
       display="inline-flex"
       alignItems="center"
@@ -77,7 +75,7 @@ function HeaderContent() {
             <IKBPLogo />
           </Flex>
         </chakra.div>
-        <Box bg="ikbppurple.500">
+        <Box bg="darkPurple.900">
           <chakra.div mx="auto" maxW="1110px">
             <Flex w="100%" h="100%" px="6" py={2} align="center" justify="center">
               <NavItem to="/">Home</NavItem>
@@ -95,13 +93,6 @@ function HeaderContent() {
 
 function Header(props: any) {
   const ref = React.useRef<HTMLHeadingElement>()
-  const [y, setY] = React.useState(0)
-  const { height = 0 } = ref.current?.getBoundingClientRect() ?? {}
-
-  const { scrollY } = useViewportScroll()
-  React.useEffect(() => {
-    return scrollY.onChange(() => setY(scrollY.get()))
-  }, [scrollY])
 
   return (
     <>
@@ -110,7 +101,7 @@ function Header(props: any) {
         transition="box-shadow 0.2s"
         top="0"
         zIndex="3"
-        bg="ikbppurple.100"
+        bg="lightPurple.900"
         left="0"
         right="0"
         width="full"
