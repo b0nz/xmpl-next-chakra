@@ -32,7 +32,7 @@ const NavItem = ({ to, children }: NavItemProps) => (
       display="inline-flex"
       alignItems="center"
       fontSize="md"
-      _hover={{ bg: "ikbppurple.100" }}
+      _hover={{ bg: "lightPurple.900" }}
       _focus={{ boxShadow: "none"  }}
     >
       {children}

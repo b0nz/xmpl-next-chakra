@@ -2,7 +2,6 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react"
-import {FiChevronLeft, FiChevronRight} from 'react-icons/fi'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 
