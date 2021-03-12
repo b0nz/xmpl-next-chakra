@@ -12,6 +12,9 @@ docker-build:
     - docker build -t "$CI_REGISTRY_USER/$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
     - echo "Registry image:" "$CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
+  only:
+    refs:
+      - master
 
 deploy:
   stage: deploy
@@ -27,3 +30,6 @@ deploy:
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker pull $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker stop $CI_REGISTRY_IMAGE || true && docker rm $CI_REGISTRY_IMAGE || true"
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker run -d --rm -p 3000:3000 --name $CI_REGISTRY_IMAGE $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
+  only:
+    refs:
+      - master
