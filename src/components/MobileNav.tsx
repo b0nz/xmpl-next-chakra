@@ -1,25 +1,29 @@
 import {
   Box,
-  BoxProps,
+  // BoxProps,
   Center,
   CloseButton,
   Flex,
-  HStack,
+  // HStack,
   IconButton,
   IconButtonProps,
   useBreakpointValue,
-  useColorModeValue,
-  useUpdateEffect,
+  // useColorModeValue,
+  // useUpdateEffect,
 } from "@chakra-ui/react"
-import { AnimatePresence, motion, useElementScroll } from "framer-motion"
+import { 
+  AnimatePresence,
+  motion,
+  // useElementScroll
+} from "framer-motion"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
 import { AiOutlineMenu } from "react-icons/ai"
 import { RemoveScroll } from "react-remove-scroll"
-import { SidebarContent } from "./Sidebar"
+// import { SidebarContent } from "./Sidebar"
 
-function NavLink({ href, children }) {
+function NavLink({ href, children }: {href: any, children: any}) {
   const { pathname } = useRouter()
 
   const [, group] = href.split("/")
@@ -35,10 +39,10 @@ function NavLink({ href, children }) {
         transition="0.2s all"
         py="2"
         fontWeight={isActive ? "semibold" : "medium"}
-        bg={isActive ? "ikbppurple.100" : "ikbppurple.500"}
+        bg={isActive ? "lightPurple.900" : "darkPurple.900"}
         color="white"
         _hover={{
-          bg: "ikbppurple.100"
+          bg: "lightPurple.900"
         }}
       >
         {children}
@@ -55,7 +59,7 @@ interface MobileNavContentProps {
 export function MobileNavContent(props: MobileNavContentProps) {
   const { isOpen, onClose } = props
   const closeBtnRef = React.useRef<HTMLButtonElement>()
-  const { pathname } = useRouter()
+  // const { pathname } = useRouter()
 
   // useRouteChanged(onClose)
 
@@ -63,7 +67,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
    * Scenario: Menu is open on mobile, and user resizes to desktop/tablet viewport.
    * Result: We'll close the menu
    */
-  const showOnBreakpoint = useBreakpointValue({ base: true, lg: false })
+  // const showOnBreakpoint = useBreakpointValue({ base: true, lg: false })
 
   // React.useEffect(() => {
   //   if (showOnBreakpoint == false) {
@@ -94,7 +98,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
             <Flex
               direction="column"
               w="100%"
-              bg="ikbppurple.500"
+              bg="darkPurple.900"
               h="100vh"
               overflow="auto"
               pos="absolute"
