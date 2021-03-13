@@ -1,5 +1,6 @@
 import React from 'react'
-import { chakra, Box, Flex, Text } from '@chakra-ui/react'
+import { chakra, Box, Flex, Text, Wrap, WrapItem } from '@chakra-ui/react'
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 export const Footer = () => {
 
@@ -8,18 +9,27 @@ export const Footer = () => {
       <Flex direction="column" maxW="1000px" marginX="auto" p="5" color="white">
       <Flex direction={["column", "row"]} justifyContent="space-between">
         <Box>
-          <Text fontSize={['xs', 'sm', 'md']} fontWeight="bold" >INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>
-          <Text fontSize={['xs', 'sm', 'md']} >Kalisoro - Tawangmangu, Karanganyar, Jawa Tengah.</Text>
-          <Text fontSize={['xs', 'sm', 'md']} >Indonesia 57792.</Text>
-          <Text fontSize={['xs', 'sm', 'md']} >Telp. 081246953030 | info@bukitpengharapan.ac.id</Text>
+          <Text fontSize={['xs', 'sm']} fontWeight="bold" >INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>
+          <Text fontSize={['xx-small', 'xs']} >Kalisoro - Tawangmangu, Karanganyar, Jawa Tengah.</Text>
+          <Text fontSize={['xx-small', 'xs']} >Indonesia 57792.</Text>
+          <Text fontSize={['xx-small', 'xs']} >Telp. 081246953030 | info@bukitpengharapan.ac.id</Text>
         </Box>
-        <Flex>
-          <Text fontSize={['xs', 'sm', 'md']} >Faq</Text>
-          <Text fontSize={['xs', 'sm', 'md']} marginX="2" >Career</Text>
-          <Text fontSize={['xs', 'sm', 'md']} >Contact</Text>
+        <Flex direction="column" marginTop={["5", "0"]} >
+          <Wrap justify={["flex-start", "flex-end"]}>
+            <WrapItem><a href="https://www.twitter.com"><FaTwitter /></a></WrapItem>
+            <WrapItem><a href="https://www.facebook.com"><FaFacebookF /></a></WrapItem>
+            <WrapItem><a href="https://www.instagram.com"><FaInstagram /></a></WrapItem>
+          </Wrap>
+          <Wrap marginTop="2">
+            <WrapItem fontSize={['xx-small', 'sm']} >Faq</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >Career</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >Contact</WrapItem>
+          </Wrap>
         </Flex>
       </Flex>
-      <Text marginTop="10" alignSelf="center" fontSize={['xx-small', 'xs', 'sm']} >&copy; 2021  INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>
+      <Text marginTop="10" alignSelf="center" fontSize={['xx-small', 'xs']} >&copy; 2021  INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>
       </Flex>
     </chakra.footer>
   )
