@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { Hero } from '../components/Hero/Hero'
 import { Container } from '../components/Container'
 import { Main } from '../components/Main'
+import { Footer } from '../components/Footer'
 
 
 const Index = () => (
@@ -16,6 +17,7 @@ const Index = () => (
       <Hero />
       <Main />
     </Container>
+    <Footer />
   </>
 )
 
