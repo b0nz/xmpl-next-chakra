@@ -1,8 +1,18 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import Router from 'next/router';
 
 import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
 import theme from '../theme'
+import NProgress from "nprogress"
+import 'nprogress/nprogress.css';
+
+NProgress.configure({ showSpinner: true });
+
+//Binding events. 
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const Fonts = () => (
   <Global
