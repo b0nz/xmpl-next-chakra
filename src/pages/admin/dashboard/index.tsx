@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import AdminLayout from '../../../components/Layout/Admin';
 
 const Dashboard = () => {
   return(
@@ -6,7 +7,9 @@ const Dashboard = () => {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div>dashboard</div>
+      <AdminLayout>
+        <div>dashboards</div>
+      </AdminLayout>
     </>
   );
 }
