@@ -107,7 +107,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
             >
               <Box>
                 <Flex justify="flex-end">
-                  <CloseButton ref={closeBtnRef} onClick={onClose} />
+                  <CloseButton color="white" ref={closeBtnRef} onClick={onClose} />
                 </Flex>
                 <Box px="6" pb="6" pt="2">
                   <NavLink href="/">Home</NavLink>
