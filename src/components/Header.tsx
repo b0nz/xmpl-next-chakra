@@ -8,16 +8,8 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import React from 'react'
-import Image from 'next/image'
+import IKBPLogo from './IKBPLogo'
 import { MobileNavButton, MobileNavContent } from './MobileNav'
-
-const IKBPLogo = () => (
-  <NextLink href="/" passHref>
-    <chakra.a display="block" aria-label="Institut Kristen Bukit Pengharapan">
-      <Image src="/IKBP.jpg" width={221} height={101} alt="ikbp" />
-    </chakra.a>
-  </NextLink>
-);
 
 interface NavItemProps {
   to: string,
@@ -53,7 +45,7 @@ function HeaderContent() {
       <Box display={["block", "none"]}>
         <chakra.div mx="auto" maxW="1110px">
           <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
-            <IKBPLogo />
+            <IKBPLogo href="/" />
             <Flex
               justify="flex-end"
               w="100%"
@@ -72,7 +64,7 @@ function HeaderContent() {
       <Box display={["none", "block"]}>
         <chakra.div mx="auto" maxW="1110px">
           <Flex w="100%" h="100%" px="6" align="center" justify="center">
-            <IKBPLogo />
+            <IKBPLogo href="/" />
           </Flex>
         </chakra.div>
         <Box bg="darkPurple.900">

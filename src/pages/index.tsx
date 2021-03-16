@@ -13,8 +13,8 @@ const Index = () => (
       <title>Bukit Pengharapan</title>
     </Head>
     <Header />
+    <Hero />
     <Container minH="100vh">
-      <Hero />
       <Main />
     </Container>
     <Footer />

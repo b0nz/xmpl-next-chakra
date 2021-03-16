@@ -29,10 +29,8 @@ const Header = ({drawerButton, ...props}: HeaderProps) => {
       ref={ref}
       transition="box-shadow 0.2s"
       w="full"
-      shadow="lg"
+      shadow="md"
       bg="white"
-      borderBottom="4px"
-      borderColor="darkPurple.900"
       {...props}
     >
       <Flex
