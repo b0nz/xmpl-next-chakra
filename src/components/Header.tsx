@@ -14,7 +14,7 @@ import { MobileNavButton, MobileNavContent } from './MobileNav'
 const IKBPLogo = () => (
   <NextLink href="/" passHref>
     <chakra.a display="block" aria-label="Institut Kristen Bukit Pengharapan">
-      <Image src="/IKBP.jpg" width={221} height={101} />
+      <Image src="/IKBP.jpg" width={221} height={101} alt="ikbp" />
     </chakra.a>
   </NextLink>
 );

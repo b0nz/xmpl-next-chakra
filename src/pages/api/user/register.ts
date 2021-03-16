@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse  } from 'next'
 import bcrypt from 'bcryptjs'
-import prisma from '../../middleware/prisma'
+import prisma from '../../../middleware/prisma'
 
 export default async (req: NextApiRequest, res: NextApiResponse ) => {
   const { method } = req;

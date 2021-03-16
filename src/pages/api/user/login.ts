@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse  } from 'next'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
-import prisma from '../../middleware/prisma'
+import prisma from '../../../middleware/prisma'
 
 const KEY: string = process.env.JWT_KEY || '';
+const EXPIRES_IN: number = 7200; // 2 hour in seconds
 
 export default async (req: NextApiRequest, res: NextApiResponse ) => {
   const { method } = req;
@@ -34,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse ) => {
             payload,
             KEY,
             {
-              expiresIn: 7200, // 2 hour in seconds
+              expiresIn: EXPIRES_IN, 
             },
             (err, token) => {
               if(token) {
@@ -42,6 +43,7 @@ export default async (req: NextApiRequest, res: NextApiResponse ) => {
                   success: true,
                   data: {
                     token: 'Bearer ' + token,
+                    expires_in: EXPIRES_IN,
                   },
                   message: 'success'
                 });
