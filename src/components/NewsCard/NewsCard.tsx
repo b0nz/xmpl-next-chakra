@@ -27,13 +27,13 @@ export const NewsCard = () => {
 
     <Box p={6}>
         <Box>
-        <chakra.span
+        {/* <chakra.span
             fontSize="xs"
             textTransform="uppercase"
             color={useColorModeValue("brand.600", "brand.400")}
         >
             Product
-        </chakra.span>
+        </chakra.span> */}
         <Link
             display="block"
             color={useColorModeValue("gray.800", "white")}
@@ -43,7 +43,7 @@ export const NewsCard = () => {
             _hover={{ color: "gray.600", textDecor: "underline" }}
             href="#"
         >
-            I Built A Successful Blog In One Year
+            Fox jumps over the lazy dog
         </Link>
         <chakra.p
             mt={2}
@@ -58,7 +58,7 @@ export const NewsCard = () => {
         </Box>
 
         <Box mt={4}>
-        <Flex alignItems="center">
+        {/* <Flex alignItems="center">
             <Flex alignItems="center">
             <Image
                 h={10}
@@ -83,7 +83,7 @@ export const NewsCard = () => {
             >
             21 SEP 2015
             </chakra.span>
-        </Flex>
+        </Flex> */}
         </Box>
     </Box>
     </Box>

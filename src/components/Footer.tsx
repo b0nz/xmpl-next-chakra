@@ -6,7 +6,7 @@ export const Footer = () => {
 
   return (
     <chakra.footer bg="darkPurple.900" left="0" right="0" bottom="0" width="full">
-      <Flex direction="column" maxW="1000px" marginX="auto" p="5" color="white">
+      <Flex direction="column" maxW="1110px" mx="auto" py="5" px={{ base: 10, md: 0 }} color="white">
       <Flex direction={["column", "row"]} justifyContent="space-between">
         <Box>
           <Text fontSize={['xs', 'sm']} fontWeight="bold" >INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>

@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import Header from './Header'
+import IKBPLogo from '../../IKBPLogo';
 
 const AdminLayout: FC = ({ children }) => {
   const [collapse, setCollapse] = useState<boolean>(false);
@@ -18,17 +19,24 @@ const AdminLayout: FC = ({ children }) => {
           insetY={0}
           left={0}
           zIndex="30"
-          overflowY="auto"
           w={collapse ? "100px" : "230px"}
           position="static"
-          pr="8"
-          pb="8"
-          pl="3"
-          pt="8"
           color="white"
-          bg="darkPurple.900"
+          bg="lightPurple.900"
+          transition="box-shadow 0.2s"
         >
-          <div>test</div>
+          {collapse ? (
+            <Flex justify="center" align="center" px={3} py={5}>
+              <IKBPLogo href="/admin/dashboard" />
+            </Flex>
+          ) : (
+            <Flex justify="center" align="center" px={10} py={1}>
+              <IKBPLogo href="/admin/dashboard" />
+            </Flex>
+          )}
+          <Flex direction="column" overflowY="auto">
+            <div>test</div>
+          </Flex>
         </Box>
         <Flex flex={1} direction="column" overflow="hidden">
           <Header drawerButton={(value: boolean) => setCollapse(value)} />

@@ -27,48 +27,17 @@ export const EventCard = () => {
             fontWeight="bold"
             color={useColorModeValue("gray.800", "white")}
         >
-        Backpack
+        Fox jumps over the lazy dog
         </chakra.h1>
 
         <chakra.p
             mt={2}
+            mb={3}
             fontSize="sm"
             color={useColorModeValue("gray.600", "gray.400")}
         >
         Lorem ipsum dolor sit amet consectetur adipisicing elit In odit
         </chakra.p>
-
-        <HStack spacing={1} display="flex" alignItems="center" mt={2}>
-        <StarIcon color={useColorModeValue("gray.700", "gray.300")} />
-        <StarIcon color={useColorModeValue("gray.700", "gray.300")} />
-        <StarIcon color={useColorModeValue("gray.700", "gray.300")} />
-        <StarIcon color="gray.500" />
-        <StarIcon color="gray.500" />
-        </HStack>
-
-        <Flex mt={3} alignItems="center" justifyContent="space-between">
-        <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
-            $220
-        </chakra.h1>
-        <chakra.button
-            px={2}
-            py={1}
-            bg="white"
-            fontSize="xs"
-            color="gray.900"
-            fontWeight="bold"
-            rounded="lg"
-            textTransform="uppercase"
-            _hover={{
-                bg: "gray.200",
-            }}
-            _focus={{
-                bg: "gray.400",
-            }}
-        >
-            Add to cart
-        </chakra.button>
-        </Flex>
     </Box>
     </Flex>
   )
