@@ -15,10 +15,7 @@ export const EventCard = () => {
     <Box
         w={1 / 3}
         bgSize="cover"
-        style={{
-        backgroundImage:
-            "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
-        }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')" }}
     ></Box>
 
     <Box w={2 / 3} p={{ base: 4, md: 4 }}>
