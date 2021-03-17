@@ -25,6 +25,7 @@ const NavItem = ({ to, children }: NavItemProps) => (
       alignItems="center"
       fontSize="md"
       _hover={{ bg: "lightPurple.900" }}
+      _active={{ bg: "lightPurple.900" }}
       _focus={{ boxShadow: "none"  }}
     >
       {children}
@@ -72,7 +73,7 @@ function HeaderContent() {
             <Flex w="100%" h="100%" px="6" py={2} align="center" justify="center">
               <NavItem to="/">Home</NavItem>
               <NavItem to="/programs">Programs</NavItem>
-              <NavItem to="/event">Event</NavItem>
+              <NavItem to="/agenda">Agenda</NavItem>
               <NavItem to="/about">About IKBP</NavItem>
             </Flex>
           </chakra.div>
@@ -84,12 +85,9 @@ function HeaderContent() {
 }
 
 function Header(props: any) {
-  const ref = React.useRef<HTMLHeadingElement>()
-
   return (
     <>
       <chakra.header
-        ref={ref}
         transition="box-shadow 0.2s"
         top="0"
         zIndex="3"
@@ -97,6 +95,7 @@ function Header(props: any) {
         left="0"
         right="0"
         width="full"
+        position="sticky"
         {...props}
       >
         <HeaderContent />
