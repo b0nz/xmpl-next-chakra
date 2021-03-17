@@ -105,14 +105,14 @@ export function MobileNavContent(props: MobileNavContentProps) {
               zIndex={20}
               pb="8"
             >
-              <Box>
-                <Flex justify="flex-end">
+              <Box py="5">
+                <Flex justify="center">
                   <CloseButton color="white" ref={closeBtnRef} onClick={onClose} />
                 </Flex>
-                <Box px="6" pb="6" pt="2">
+                <Box px="5" pb="6" pt="10">
                   <NavLink href="/">Home</NavLink>
                   <NavLink href="/programs">Programs</NavLink>
-                  <NavLink href="/event">Event</NavLink>
+                  <NavLink href="/agenda">Agenda</NavLink>
                   <NavLink href="/about">About IKBP</NavLink>
                 </Box>
               </Box>
@@ -167,9 +167,9 @@ export const MobileNavButton = React.forwardRef(
       <IconButton
         ref={ref}
         display={{ base: "flex", md: "none" }}
-        // aria-label="Open menu"
+        aria-label="Mobile Nav"
         fontSize="20px"
-        color="#ffffff"
+        color="white"
         variant="ghost"
         icon={<AiOutlineMenu />}
         {...props}

@@ -1,13 +1,13 @@
 import { Stack, Flex, Text, Link, Grid } from '@chakra-ui/react'
-import { NewsCard } from './NewsCard/NewsCard'
-import { EventCard } from './EventCard/EventCard'
+import { NewsCard } from './Card/NewsCard'
+import { EventCard } from './Card/EventCard'
 
 export const Main = () => {
   return (
     <Stack direction="column" spacing={10} py={10}>
       <Flex w="full" direction="column" >
         <Flex justify="space-between" align="center" marginBottom="3">
-          <Text fontSize={['md', 'lg']} fontWeight="bold">IKBP News</Text>
+          <Text fontSize={['md', 'lg']} fontWeight="bold">Berita</Text>
           <Link color="darkPurple.900" href="#">
             View All
           </Link>
@@ -20,7 +20,7 @@ export const Main = () => {
       </Flex>
       <Flex w="full" direction="column" >
         <Flex justify="space-between" align="center" marginBottom="3">
-          <Text fontSize={['md', 'lg']} fontWeight="bold" >Event</Text>
+          <Text fontSize={['md', 'lg']} fontWeight="bold">Agenda</Text>
           <Link color="darkPurple.900" href="#">
             View All
           </Link>

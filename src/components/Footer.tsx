@@ -3,10 +3,9 @@ import { chakra, Box, Flex, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 export const Footer = () => {
-
   return (
     <chakra.footer bg="darkPurple.900" left="0" right="0" bottom="0" width="full">
-      <Flex direction="column" maxW="1110px" mx="auto" py="5" px={{ base: 10, md: 0 }} color="white">
+      <Flex direction="column" maxW="1110px" mx="auto" py="5" px={{ base: 5, md: 0 }} color="white">
       <Flex direction={["column", "row"]} justifyContent="space-between">
         <Box>
           <Text fontSize={['xs', 'sm']} fontWeight="bold" >INSTITUT KRISTEN BUKIT PENGHARAPAN</Text>
@@ -21,7 +20,7 @@ export const Footer = () => {
             <WrapItem><a href="https://www.instagram.com"><FaInstagram /></a></WrapItem>
           </Wrap>
           <Wrap marginTop="2">
-            <WrapItem fontSize={['xx-small', 'sm']} >Faq</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >FaQ</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >Career</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
