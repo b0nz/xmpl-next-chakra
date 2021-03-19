@@ -1,6 +1,6 @@
 import React from 'react'
 import { chakra, Box, Flex, Text, Wrap, WrapItem } from '@chakra-ui/react'
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 export const Footer = () => {
   return (
@@ -14,15 +14,15 @@ export const Footer = () => {
           <Text fontSize={['xx-small', 'xs']} >Telp. 081246953030 | info@bukitpengharapan.ac.id</Text>
         </Box>
         <Flex direction="column" marginTop={["5", "0"]} >
-          <Wrap justify={["flex-start", "flex-end"]}>
-            <WrapItem><a href="https://www.twitter.com"><FaTwitter /></a></WrapItem>
+          <Wrap justify={["flex-start", "flex-end"]} spacing={3}>
+            <WrapItem><a href="https://www.youtube.com"><FaYoutube /></a></WrapItem>
             <WrapItem><a href="https://www.facebook.com"><FaFacebookF /></a></WrapItem>
             <WrapItem><a href="https://www.instagram.com"><FaInstagram /></a></WrapItem>
           </Wrap>
           <Wrap marginTop="2">
             <WrapItem fontSize={['xx-small', 'sm']} >FaQ</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
-            <WrapItem fontSize={['xx-small', 'sm']} >Career</WrapItem>
+            <WrapItem fontSize={['xx-small', 'sm']} >Rekrutmen</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >|</WrapItem>
             <WrapItem fontSize={['xx-small', 'sm']} >Contact</WrapItem>
           </Wrap>

@@ -1,12 +1,15 @@
 import {
   Box,
+  Button,
   // BoxProps,
   Center,
   CloseButton,
+  Collapse,
   Flex,
   // HStack,
   IconButton,
   IconButtonProps,
+  Stack,
   // useBreakpointValue,
   // useColorModeValue,
   // useUpdateEffect,
@@ -20,8 +23,47 @@ import NextLink from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
 import { AiOutlineMenu } from "react-icons/ai"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 import { RemoveScroll } from "react-remove-scroll"
 // import { SidebarContent } from "./Sidebar"
+
+const NavCollapse = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return(
+    <>
+      <Button
+        flex="1"
+        w="full"
+        rounded="md"
+        transition="0.2s all"
+        py="2"
+        fontWeight="medium"
+        bg="darkPurple.900"
+        color="white"
+        _hover={{
+          bg: "lightPurple.900"
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+        rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />}
+      >
+        Akademik
+      </Button>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          px={5}
+          py={3}
+          bg="darkPurple.900"
+          rounded="md"
+          shadow="md"
+        >
+          <NavLink href="/akademik/internasional-bussiness">Internasional Bussiness</NavLink>
+          <NavLink href="/akademik/tourism-hospitality">{`Tourism & Hospitality`}</NavLink>
+          <NavLink href="/akademik/visual-communication-design">Visual Communication Design</NavLink>
+        </Box>
+      </Collapse>
+    </>
+  )
+}
 
 function NavLink({ href, children }: {href: any, children: any}) {
   const { pathname } = useRouter()
@@ -39,7 +81,7 @@ function NavLink({ href, children }: {href: any, children: any}) {
         transition="0.2s all"
         py="2"
         fontWeight={isActive ? "semibold" : "medium"}
-        bg={isActive ? "lightPurple.900" : "darkPurple.900"}
+        bg={isActive ? "lightPurple.900" : "transparent"}
         color="white"
         _hover={{
           bg: "lightPurple.900"
@@ -110,10 +152,12 @@ export function MobileNavContent(props: MobileNavContentProps) {
                   <CloseButton color="white" ref={closeBtnRef} onClick={onClose} />
                 </Flex>
                 <Box px="5" pb="6" pt="10">
-                  <NavLink href="/">Home</NavLink>
-                  <NavLink href="/programs">Programs</NavLink>
-                  <NavLink href="/agenda">Agenda</NavLink>
-                  <NavLink href="/about">About IKBP</NavLink>
+                  <Stack spacing={5}>
+                    <NavLink href="/">Home</NavLink>
+                    <NavCollapse />
+                    <NavLink href="/agenda">Agenda</NavLink>
+                    <NavLink href="/about">About IKBP</NavLink>
+                  </Stack>
                 </Box>
               </Box>
 

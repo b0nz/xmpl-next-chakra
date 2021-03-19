@@ -12,7 +12,7 @@ const Agenda = () => (
     </Head>
     <Header />
     <Container minH="100vh">
-      <Heading>Agenda Page</Heading>
+      <Heading>Agenda</Heading>
     </Container>
     <Footer />
   </>
