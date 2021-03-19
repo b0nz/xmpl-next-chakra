@@ -1,5 +1,5 @@
 import Slider from '@farbenmeer/react-spring-slider'
-import { Button } from '@chakra-ui/react'
+import { IconButton } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 const images = [
@@ -17,13 +17,13 @@ const imageStyle = (src: string) => ({
 });
 
 const customArrow = ({ onClick, direction }) => direction === "left" ? (
-  <Button onClick={onClick} bg="transparent">
+  <IconButton variant="ghost" aria-label="hero arrow left" onClick={onClick}>
     <FiChevronLeft color="white" size={30} />
-  </Button>
+  </IconButton>
 ) : (
-  <Button onClick={onClick} bg="transparent">
+  <IconButton variant="ghost" aria-label="hero arrow right" onClick={onClick}>
     <FiChevronRight color="white" size={30} />
-  </Button>
+  </IconButton>
 )
 
 export const Hero = () => {
