@@ -7,7 +7,7 @@ export const Main = () => {
     <Stack direction="column" spacing={10} py={10}>
       <Flex w="full" direction="column" >
         <Flex justify="space-between" align="center" marginBottom="3">
-          <Text fontSize={['md', 'lg']} fontWeight="bold">Berita</Text>
+          <Text fontSize={['md', 'lg']} fontWeight="bold">Berita Terbaru</Text>
           <Link color="darkPurple.900" href="#">
             View All
           </Link>

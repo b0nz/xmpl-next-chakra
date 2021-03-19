@@ -9,7 +9,7 @@ import PMB from '../components/PMB';
 const Index = () => (
   <>
     <Head>
-      <title>IKBP</title>
+      <title>Home | IKBP</title>
     </Head>
     <Header />
     <Hero />
