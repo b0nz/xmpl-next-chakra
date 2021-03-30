@@ -1,10 +1,11 @@
+import { FC } from 'react'
 import Head from 'next/head'
-import {Text} from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import Header from '../../components/Header'
 import { Container } from '../../components/Container'
 import { Footer } from '../../components/Footer'
 
-export default function InternasionalBussiness() {
+const InternasionalBussiness: FC = () => {
   return (
     <>
       <Head>
@@ -18,3 +19,5 @@ export default function InternasionalBussiness() {
     </>
   )
 }
+
+export default InternasionalBussiness
