@@ -1,8 +1,9 @@
+import { FC } from 'react'
 import Head from 'next/head'
-import AdminLayout from '../../../components/Layout/Admin';
+import AdminLayout from '../../../components/Layout/Admin'
 
-const Dashboard = () => {
-  return(
+const Dashboard: FC = () => {
+  return (
     <>
       <Head>
         <title>Dashboard</title>
@@ -11,7 +12,7 @@ const Dashboard = () => {
         <div>dashboards</div>
       </AdminLayout>
     </>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard
