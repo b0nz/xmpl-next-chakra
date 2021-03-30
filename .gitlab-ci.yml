@@ -31,7 +31,7 @@ deploy:
   script:
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker pull $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker stop $CI_REGISTRY_IMAGE || true && docker rm $CI_REGISTRY_IMAGE || true"
-    - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker run -d --rm -p 80:3000 --name $CI_REGISTRY_IMAGE $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
+    - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker run -d --rm -p 3000:3000 --name $CI_REGISTRY_IMAGE $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
   only:
     refs:
       - master
