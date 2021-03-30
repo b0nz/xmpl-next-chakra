@@ -1,35 +1,33 @@
+import { FC, useState, useRef, forwardRef } from 'react'
 import {
   Box,
   Button,
-  // BoxProps,
   Center,
   CloseButton,
   Collapse,
   Flex,
-  // HStack,
   IconButton,
   IconButtonProps,
   Stack,
-  // useBreakpointValue,
-  // useColorModeValue,
-  // useUpdateEffect,
-} from "@chakra-ui/react"
-import { 
-  AnimatePresence,
-  motion,
-  // useElementScroll
-} from "framer-motion"
-import NextLink from "next/link"
-import { useRouter } from "next/router"
-import * as React from "react"
-import { AiOutlineMenu } from "react-icons/ai"
-import { FiChevronDown, FiChevronUp } from "react-icons/fi"
-import { RemoveScroll } from "react-remove-scroll"
-// import { SidebarContent } from "./Sidebar"
+} from '@chakra-ui/react'
+import { AnimatePresence, motion } from 'framer-motion'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { RemoveScroll } from 'react-remove-scroll'
 
-const NavCollapse = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return(
+interface NavLinkProps {
+  href?: string
+}
+interface MobileNavContentProps {
+  isOpen?: boolean
+  onClose?: () => void
+}
+
+const NavCollapse: FC = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
     <>
       <Button
         flex="1"
@@ -41,7 +39,7 @@ const NavCollapse = () => {
         bg="darkPurple.900"
         color="white"
         _hover={{
-          bg: "lightPurple.900"
+          bg: 'lightPurple.900',
         }}
         onClick={() => setIsOpen(!isOpen)}
         rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />}
@@ -49,26 +47,24 @@ const NavCollapse = () => {
         Akademik
       </Button>
       <Collapse in={isOpen} animateOpacity>
-        <Box
-          px={5}
-          py={3}
-          bg="darkPurple.900"
-          rounded="md"
-          shadow="md"
-        >
-          <NavLink href="/akademik/internasional-bussiness">Internasional Bussiness</NavLink>
+        <Box px={5} py={3} bg="darkPurple.900" rounded="md" shadow="md">
+          <NavLink href="/akademik/internasional-bussiness">
+            Internasional Bussiness
+          </NavLink>
           <NavLink href="/akademik/tourism-hospitality">{`Tourism & Hospitality`}</NavLink>
-          <NavLink href="/akademik/visual-communication-design">Visual Communication Design</NavLink>
+          <NavLink href="/akademik/visual-communication-design">
+            Visual Communication Design
+          </NavLink>
         </Box>
       </Collapse>
     </>
   )
 }
 
-function NavLink({ href, children }: {href: any, children: any}) {
+const NavLink: FC<NavLinkProps> = ({ href, children }) => {
   const { pathname } = useRouter()
 
-  const [, group] = href.split("/")
+  const [, group] = href.split('/')
   const isActive = pathname.includes(group)
 
   return (
@@ -80,11 +76,11 @@ function NavLink({ href, children }: {href: any, children: any}) {
         rounded="md"
         transition="0.2s all"
         py="2"
-        fontWeight={isActive ? "semibold" : "medium"}
-        bg={isActive ? "lightPurple.900" : "transparent"}
+        fontWeight={isActive ? 'semibold' : 'medium'}
+        bg={isActive ? 'lightPurple.900' : 'transparent'}
         color="white"
         _hover={{
-          bg: "lightPurple.900"
+          bg: 'lightPurple.900',
         }}
       >
         {children}
@@ -93,37 +89,9 @@ function NavLink({ href, children }: {href: any, children: any}) {
   )
 }
 
-interface MobileNavContentProps {
-  isOpen?: boolean
-  onClose?: () => void
-}
-
-export function MobileNavContent(props: MobileNavContentProps) {
+const MobileNavContent: FC<MobileNavContentProps> = (props) => {
   const { isOpen, onClose } = props
-  const closeBtnRef = React.useRef<HTMLButtonElement>(null)
-  // const { pathname } = useRouter()
-
-  // useRouteChanged(onClose)
-
-  /**
-   * Scenario: Menu is open on mobile, and user resizes to desktop/tablet viewport.
-   * Result: We'll close the menu
-   */
-  // const showOnBreakpoint = useBreakpointValue({ base: true, lg: false })
-
-  // React.useEffect(() => {
-  //   if (showOnBreakpoint == false) {
-  //     onClose()
-  //   }
-  // }, [showOnBreakpoint])
-
-  // useUpdateEffect(() => {
-  //   if (isOpen) {
-  //     requestAnimationFrame(() => {
-  //       closeBtnRef.current?.focus()
-  //     })
-  //   }
-  // }, [isOpen])
+  const closeBtnRef = useRef<HTMLButtonElement>(null)
 
   return (
     <AnimatePresence>
@@ -149,7 +117,11 @@ export function MobileNavContent(props: MobileNavContentProps) {
             >
               <Box py="5">
                 <Flex justify="center">
-                  <CloseButton color="white" ref={closeBtnRef} onClick={onClose} />
+                  <CloseButton
+                    color="white"
+                    ref={closeBtnRef}
+                    onClick={onClose}
+                  />
                 </Flex>
                 <Box px="5" pb="6" pt="10">
                   <Stack spacing={5}>
@@ -160,17 +132,6 @@ export function MobileNavContent(props: MobileNavContentProps) {
                   </Stack>
                 </Box>
               </Box>
-
-              {/* <ScrollView
-                onScroll={(scrolled) => {
-                  setShadow(scrolled ? "md" : undefined)
-                }}
-              >
-                <SidebarContent
-                  pathname={pathname}
-                  routes={getRoutes(pathname)}
-                />
-              </ScrollView> */}
             </Flex>
           </motion.div>
         </RemoveScroll>
@@ -179,38 +140,12 @@ export function MobileNavContent(props: MobileNavContentProps) {
   )
 }
 
-// const ScrollView = (props: BoxProps & { onScroll?: any }) => {
-//   const { onScroll, ...rest } = props
-//   const [y, setY] = React.useState(0)
-//   const elRef = React.useRef<any>()
-//   const { scrollY } = useElementScroll(elRef)
-//   React.useEffect(() => {
-//     return scrollY.onChange(() => setY(scrollY.get()))
-//   }, [scrollY])
-
-//   useUpdateEffect(() => {
-//     onScroll?.(y > 5 ? true : false)
-//   }, [y])
-
-//   return (
-//     <Box
-//       ref={elRef}
-//       flex="1"
-//       id="routes"
-//       overflow="auto"
-//       px="6"
-//       pb="6"
-//       {...rest}
-//     />
-//   )
-// }
-
-export const MobileNavButton = React.forwardRef(
+const MobileNavButton = forwardRef(
   (props: IconButtonProps, ref: React.Ref<any>) => {
     return (
       <IconButton
         ref={ref}
-        display={{ base: "flex", md: "none" }}
+        display={{ base: 'flex', md: 'none' }}
         aria-label="Mobile Nav"
         fontSize="20px"
         color="white"
@@ -219,5 +154,7 @@ export const MobileNavButton = React.forwardRef(
         {...props}
       />
     )
-  },
+  }
 )
+
+export { MobileNavContent, MobileNavButton }

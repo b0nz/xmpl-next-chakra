@@ -1,0 +1,9 @@
+query {
+  banners {
+    id
+    title
+    image {
+      url
+    }
+  }
+}

@@ -1,18 +1,24 @@
+import { FC } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
-import Router from 'next/router';
-
+import Router from 'next/router'
+import NProgress from 'nprogress'
 import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
 import theme from '../theme'
-import NProgress from "nprogress"
-import 'nprogress/nprogress.css';
+import 'nprogress/nprogress.css'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
-NProgress.configure({ showSpinner: true });
+const client = new ApolloClient({
+  uri: `${process.env.NEXT_PUBLIC_BASE_URL}/graphql`,
+  cache: new InMemoryCache(),
+})
 
-//Binding events. 
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
+NProgress.configure({ showSpinner: true })
+
+//Binding events.
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 const Fonts = () => (
   <Global
@@ -26,12 +32,14 @@ const Fonts = () => (
   />
 )
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Fonts />
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <ApolloProvider client={client}>
+      <ChakraProvider resetCSS theme={theme}>
+        <Fonts />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </ApolloProvider>
   )
 }
 

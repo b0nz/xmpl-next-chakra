@@ -1,49 +1,71 @@
+import { FC } from 'react'
 import Slider from '@farbenmeer/react-spring-slider'
-import { IconButton } from '@chakra-ui/react'
+import { IconButton, Skeleton } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { useQuery } from '@apollo/client'
+import QUERY_BANNERS from '../../schema/queryBanners.graphql'
 
 const images = [
-	"https://images.pexels.com/photos/3740695/pexels-photo-3740695.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-	"https://images.pexels.com/photos/3740446/pexels-photo-3740446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-	"https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-	"https://images.pexels.com/photos/924675/pexels-photo-924675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-];
+  '/blank-slider.jpg'
+]
 
 const imageStyle = (src: string) => ({
-	backgroundSize: "cover",
-	backgroundImage: `url(${src})`,
-	height: "100%",
-	width: "100%",
-});
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  backgroundImage: `url(${src})`,
+  backgroundColor: '#2b2b2b',
+  height: '100%',
+  width: '100%',
+})
 
-const customArrow = ({ onClick, direction }) => direction === "left" ? (
-  <IconButton variant="ghost" aria-label="hero arrow left" onClick={onClick}>
-    <FiChevronLeft color="white" size={30} />
-  </IconButton>
-) : (
-  <IconButton variant="ghost" aria-label="hero arrow right" onClick={onClick}>
-    <FiChevronRight color="white" size={30} />
-  </IconButton>
-)
+const customArrow = ({ onClick, direction }) =>
+  direction === 'left' ? (
+    <IconButton variant="ghost" aria-label="hero arrow left" onClick={onClick}>
+      <FiChevronLeft color="white" size={30} />
+    </IconButton>
+  ) : (
+    <IconButton variant="ghost" aria-label="hero arrow right" onClick={onClick}>
+      <FiChevronRight color="white" size={30} />
+    </IconButton>
+  )
 
-export const Hero = () => {
+export const Hero: FC = () => {
+  const { data, loading } = useQuery(QUERY_BANNERS)
+
   return (
-    <div style={{ width: "100%", height: "400px" }}>
-      <Slider
-        hasBullets
-        hasArrows
-        auto={5000}
-        bulletStyle={{ backgroundColor: "#fff", width: '10px', height: '10px' }}
-        ArrowComponent={customArrow}
-      >
-        {images.map((image) => (
-          <div
-            key={image}
-            draggable="false"
-            style={imageStyle(image)}
-          />
-        ))}
-      </Slider>
-    </div>
+    <>
+      {loading ? (
+        <Skeleton height={600} />
+      ) : (
+        <div style={{ width: '100%', height: 600 }}>
+          <Slider
+            hasBullets
+            hasArrows
+            auto={5000}
+            bulletStyle={{
+              backgroundColor: '#fff',
+              width: '10px',
+              height: '10px',
+            }}
+            ArrowComponent={customArrow}
+          >
+            {data && data.banners.length > 0
+              ? data.banners.map((item) => (
+                  <div
+                    key={item.id}
+                    draggable={false}
+                    style={imageStyle(
+                      `${process.env.NEXT_PUBLIC_BASE_URL}${item.image.url}`
+                    )}
+                  />
+                ))
+              : images.map((item) => (
+                  <div key={item} draggable={false} style={imageStyle(item)} />
+                ))}
+          </Slider>
+        </div>
+      )}
+    </>
   )
 }
