@@ -1,0 +1,11 @@
+query {
+  articles(limit: 3, sort: "id:DESC") {
+    title
+    description
+    slug
+    publishedAt
+    image {
+      url
+    }
+  }
+}

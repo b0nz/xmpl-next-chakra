@@ -5,9 +5,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { useQuery } from '@apollo/client'
 import QUERY_BANNERS from '../../schema/queryBanners.graphql'
 
-const images = [
-  '/blank-slider.jpg'
-]
+const images = ['/blank.jpg']
 
 const imageStyle = (src: string) => ({
   backgroundSize: 'contain',

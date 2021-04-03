@@ -1,7 +1,28 @@
 import { FC } from 'react'
-import { chakra, Box, Image, useColorModeValue, Link } from '@chakra-ui/react'
+import {
+  chakra,
+  Box,
+  Image,
+  useColorModeValue,
+  Link,
+  Skeleton,
+} from '@chakra-ui/react'
 
-export const NewsCard: FC = () => {
+interface NewsCardProps {
+  title?: string
+  image?: string
+  slug?: string
+  description?: string
+  loading?: boolean
+}
+
+export const NewsCard: FC<NewsCardProps> = ({
+  title,
+  image = '/',
+  slug = '',
+  description,
+  loading = false,
+}) => {
   return (
     <Box
       mx="auto"
@@ -15,33 +36,35 @@ export const NewsCard: FC = () => {
         w="full"
         h={64}
         fit="cover"
-        src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        alt="Article"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}${image}`}
+        alt={`${process.env.NEXT_PUBLIC_BASE_URL}${title}`}
+        fallbackSrc="/blank.jpg"
       />
-
       <Box p={6}>
         <Box mb={4}>
-          <Link
-            display="block"
-            color={useColorModeValue('gray.800', 'white')}
-            fontWeight="bold"
-            fontSize="2xl"
-            mt={2}
-            _hover={{ color: 'gray.600', textDecor: 'underline' }}
-            href="#"
-          >
-            Fox jumps over the lazy dog
-          </Link>
-          <chakra.p
-            mt={2}
-            fontSize="sm"
-            color={useColorModeValue('gray.600', 'gray.400')}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-            parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
-            egestas quam volutpat viverra. In pretium nec senectus erat. Et
-            malesuada lobortis.
-          </chakra.p>
+          <Skeleton isLoaded={!loading}>
+            <Link
+              display="block"
+              color={useColorModeValue('gray.800', 'white')}
+              fontWeight="bold"
+              fontSize="2xl"
+              mt={2}
+              _hover={{ color: 'gray.600', textDecor: 'underline' }}
+              href={`/berita/${slug}`}
+            >
+              {title}
+            </Link>
+          </Skeleton>
+
+          <Skeleton isLoaded={!loading}>
+            <chakra.p
+              mt={2}
+              fontSize="sm"
+              color={useColorModeValue('gray.600', 'gray.400')}
+            >
+              {description}
+            </chakra.p>
+          </Skeleton>
         </Box>
       </Box>
     </Box>
