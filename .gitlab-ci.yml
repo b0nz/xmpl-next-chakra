@@ -30,7 +30,8 @@ deploy:
     - chmod 700 ~/.ssh
   script:
     - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker stop $CI_REGISTRY_IMAGE || true && docker rm $CI_REGISTRY_IMAGE || true"
-    - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "cd ikbp-proxy && docker-compose up -d --no-deps --build ikbp-next"
+    - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker image pull $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
+    - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "cd ikbp-proxy && docker-compose up -d --no-deps --build $CI_REGISTRY_IMAGE"
     # - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker pull $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
     # - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker stop $CI_REGISTRY_IMAGE || true && docker rm $CI_REGISTRY_IMAGE || true"
     # - ssh -o StrictHostKeyChecking=no root@$PROD_SERVER_IP "docker run -d --rm -p 3000:3000 --name $CI_REGISTRY_IMAGE $CI_REGISTRY_USER/$CI_REGISTRY_IMAGE"
