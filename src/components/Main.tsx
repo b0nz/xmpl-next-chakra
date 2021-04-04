@@ -20,13 +20,13 @@ export const Main: FC = () => {
           </Link>
         </Flex>
         {loading ? (
-          <Grid gap={15} templateColumns={{ md: 'repeat(3, 1fr)' }}>
+          <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
             <NewsCard loading={loading} />
             <NewsCard loading={loading} />
             <NewsCard loading={loading} />
           </Grid>
         ) : (
-          <Grid gap={15} templateColumns={{ md: 'repeat(3, 1fr)' }}>
+          <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
             {data &&
               data.articles &&
               data.articles.map((article) => (
@@ -50,7 +50,7 @@ export const Main: FC = () => {
             View All
           </Link>
         </Flex>
-        <Grid templateColumns={['1fr', 'repeat(2, 1fr)']} gap={15}>
+        <Grid templateColumns={['1fr', 'repeat(2, 1fr)']} gap={6}>
           <EventCard />
           <EventCard />
           <EventCard />

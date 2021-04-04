@@ -5,6 +5,7 @@ import NProgress from 'nprogress'
 import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
 import theme from '../theme'
+import 'dayjs/locale/id'
 import 'nprogress/nprogress.css'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
