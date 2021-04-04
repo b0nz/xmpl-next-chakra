@@ -3,7 +3,7 @@ import Slider from '@farbenmeer/react-spring-slider'
 import { IconButton, Skeleton } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { useQuery } from '@apollo/client'
-import QUERY_BANNERS from '../../schema/queryBanners.graphql'
+import QUERY_SLIDERS from '../../schema/querysliders.graphql'
 
 const images = ['/blank.jpg']
 
@@ -29,14 +29,14 @@ const customArrow = ({ onClick, direction }) =>
   )
 
 export const Hero: FC = () => {
-  const { data, loading } = useQuery(QUERY_BANNERS)
+  const { data, loading } = useQuery(QUERY_SLIDERS)
 
   return (
     <>
       {loading ? (
         <Skeleton height={600} />
       ) : (
-        <div style={{ width: '100%', height: 600 }}>
+        <div style={{ width: '100%', height: 400 }}>
           <Slider
             hasBullets
             hasArrows
@@ -48,8 +48,8 @@ export const Hero: FC = () => {
             }}
             ArrowComponent={customArrow}
           >
-            {data && data.banners.length > 0
-              ? data.banners.map((item) => (
+            {data && data.sliders.length > 0
+              ? data.sliders.map((item) => (
                   <div
                     key={item.id}
                     draggable={false}

@@ -4,6 +4,9 @@ query {
     description
     slug
     publishedAt
+    category {
+      name
+    }
     image {
       url
     }

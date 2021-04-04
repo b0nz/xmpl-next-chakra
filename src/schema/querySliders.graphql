@@ -1,5 +1,5 @@
 query {
-  banners {
+  sliders {
     id
     title
     image {

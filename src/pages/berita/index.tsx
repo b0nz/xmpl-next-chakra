@@ -25,13 +25,13 @@ const Berita: FC = () => {
           </Text>
         </Flex>
         {loading ? (
-          <Grid gap={15} templateColumns={{ md: 'repeat(3, 1fr)' }}>
+          <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
             <NewsCard loading={loading} />
             <NewsCard loading={loading} />
             <NewsCard loading={loading} />
           </Grid>
         ) : (
-          <Grid gap={15} templateColumns={{ md: 'repeat(3, 1fr)' }}>
+          <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
             {data &&
               data.articles &&
               data.articles.map((article) => (
