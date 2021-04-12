@@ -3,7 +3,7 @@ import Slider from '@farbenmeer/react-spring-slider'
 import { IconButton, Skeleton } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { useQuery } from '@apollo/client'
-import QUERY_SLIDERS from '../../schema/querysliders.graphql'
+import QUERY_SLIDERS from '../../schema/querySliders.graphql'
 
 const images = ['/blank.jpg']
 
