@@ -1,39 +1,107 @@
 import { FC } from 'react'
-import { chakra, Box, Flex, useColorModeValue } from '@chakra-ui/react'
+import { chakra, Box, Flex, Text, Grid } from '@chakra-ui/react'
+import dayjs from 'dayjs'
 
-export const EventCard: FC = () => {
+interface EventCardProps {
+  title?: string
+  startDate?: string
+  endDate?: string
+  description?: string
+}
+
+export const EventCard: FC<EventCardProps> = ({
+  title,
+  startDate,
+  endDate,
+  description,
+}) => {
   return (
     <Flex
-      bg={useColorModeValue('white', 'gray.800')}
+      bg="white"
       shadow="lg"
       rounded="lg"
       overflow="hidden"
+      flexDirection={['column', 'column', 'row']}
+      p={4}
     >
-      <Box
-        w={1 / 3}
-        bgSize="cover"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
-        }}
-      ></Box>
+      {startDate !== endDate ? (
+        <Grid templateColumns="repeat(2, 1fr)" gap={3}>
+          <Box flex={1}>
+            <Box
+              h="full"
+              d="flex"
+              borderRadius="md"
+              flexDirection="column"
+              bgGradient="linear(to-b, lightPurple.900, darkPurple.900)"
+              justifyContent="center"
+              alignItems="center"
+              py={3}
+              px={5}
+            >
+              <Text color="white" fontWeight="600" fontSize="xl">
+                {dayjs(startDate).format('D')}
+              </Text>
+              <Text color="white" fontWeight="600" fontSize="sm">
+                {dayjs(startDate).format('MMM').toUpperCase()}
+              </Text>
+              <Text color="white" fontWeight="600" fontSize="xs">
+                {dayjs(startDate).format('YYYY').toUpperCase()}
+              </Text>
+            </Box>
+          </Box>
+          <Box flex={1}>
+            <Box
+              h="full"
+              d="flex"
+              borderRadius="md"
+              flexDirection="column"
+              bgGradient="linear(to-b, lightPurple.900, darkPurple.900)"
+              justifyContent="center"
+              alignItems="center"
+              py={3}
+              px={5}
+            >
+              <Text color="white" fontWeight="600" fontSize="xl">
+                {dayjs(endDate).format('D')}
+              </Text>
+              <Text color="white" fontWeight="600" fontSize="sm">
+                {dayjs(endDate).format('MMM').toUpperCase()}
+              </Text>
+              <Text color="white" fontWeight="600" fontSize="xs">
+                {dayjs(endDate).format('YYYY').toUpperCase()}
+              </Text>
+            </Box>
+          </Box>
+        </Grid>
+      ) : (
+        <Box flex={1}>
+          <Box
+            h="full"
+            d="flex"
+            borderRadius="md"
+            flexDirection="column"
+            bgGradient="linear(to-b, lightPurple.900, darkPurple.900)"
+            justifyContent="center"
+            alignItems="center"
+            py={3}
+          >
+            <Text color="white" fontWeight="600" fontSize="3xl">
+              {dayjs(startDate).format('D')}
+            </Text>
+            <Text color="white" fontWeight="600" fontSize="xl">
+              {dayjs(startDate).format('MMM YYYY').toUpperCase()}
+            </Text>
+          </Box>
+        </Box>
+      )}
 
-      <Box w={2 / 3} p={{ base: 4, md: 4 }}>
-        <chakra.h1
-          fontSize="2xl"
-          fontWeight="bold"
-          color={useColorModeValue('gray.800', 'white')}
-        >
-          Fox jumps over the lazy dog
+      <Box flex={2} ml={[0, 0, 5]} mt={[4, 4, 0]}>
+        <chakra.h1 fontSize="2xl" fontWeight="bold" color="gray.800">
+          {title}
         </chakra.h1>
 
-        <chakra.p
-          mt={2}
-          mb={3}
-          fontSize="sm"
-          color={useColorModeValue('gray.600', 'gray.400')}
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit In odit
+        <chakra.p mt={2} mb={3} fontSize="sm" color="gray.600">
+          {description}
         </chakra.p>
       </Box>
     </Flex>
