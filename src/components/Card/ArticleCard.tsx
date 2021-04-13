@@ -8,7 +8,7 @@ import {
   Skeleton,
 } from '@chakra-ui/react'
 
-interface NewsCardProps {
+interface ArticleCardProps {
   title?: string
   image?: string
   slug?: string
@@ -16,7 +16,7 @@ interface NewsCardProps {
   loading?: boolean
 }
 
-export const NewsCard: FC<NewsCardProps> = ({
+const ArticleCard: FC<ArticleCardProps> = ({
   title,
   image = '/',
   slug = '',
@@ -50,7 +50,7 @@ export const NewsCard: FC<NewsCardProps> = ({
               fontSize="2xl"
               mt={2}
               _hover={{ color: 'gray.600', textDecor: 'underline' }}
-              href={`/berita/${slug}`}
+              href={`/artikel/${slug}`}
             >
               {title}
             </Link>
@@ -70,3 +70,5 @@ export const NewsCard: FC<NewsCardProps> = ({
     </Box>
   )
 }
+
+export default ArticleCard

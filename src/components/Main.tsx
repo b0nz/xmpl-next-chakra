@@ -1,43 +1,51 @@
 import { FC } from 'react'
 import { Stack, Flex, Text, Link, Grid } from '@chakra-ui/react'
-import { NewsCard } from './Card/NewsCard'
+import ArticleCard from './Card/ArticleCard'
 import { EventCard } from './Card/EventCard'
-import { useQuery } from '@apollo/client'
-import QUERY_ARTICLES from '../schema/queryArticlesLimit3.graphql'
+import dayjs from 'dayjs'
 
-export const Main: FC = () => {
-  const { data, loading } = useQuery(QUERY_ARTICLES)
+interface MainProps {
+  calendars?: any
+  articles?: any
+  loading?: boolean
+}
+
+export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
+  const calendarFilter =
+    calendars && calendars.filter((f) => dayjs().isBefore(f.startDate))
 
   return (
     <Stack direction="column" spacing={10} py={10}>
       <Flex w="full" direction="column">
         <Flex justify="space-between" align="center" marginBottom="3">
           <Text fontSize={['md', 'lg']} fontWeight="bold">
-            Berita Terbaru
+            Artikel Terbaru
           </Text>
-          <Link color="darkPurple.900" href="/berita">
+          <Link color="darkPurple.900" href="/artikel">
             View All
           </Link>
         </Flex>
         {loading ? (
           <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
-            <NewsCard loading={loading} />
-            <NewsCard loading={loading} />
-            <NewsCard loading={loading} />
+            <ArticleCard loading={loading} />
+            <ArticleCard loading={loading} />
+            <ArticleCard loading={loading} />
           </Grid>
         ) : (
           <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
-            {data &&
-              data.articles &&
-              data.articles.map((article) => (
-                <NewsCard
+            {articles ? (
+              articles.map((article) => (
+                <ArticleCard
                   key={article.slug}
                   title={article.title}
                   image={article.image.url}
                   description={article.description}
                   slug={article.slug}
                 />
-              ))}
+              ))
+            ) : (
+              <div>no data</div>
+            )}
           </Grid>
         )}
       </Flex>
@@ -51,10 +59,25 @@ export const Main: FC = () => {
           </Link>
         </Flex>
         <Grid templateColumns={['1fr', 'repeat(2, 1fr)']} gap={6}>
-          <EventCard />
-          <EventCard />
-          <EventCard />
-          <EventCard />
+          {loading ? (
+            <div>loading</div>
+          ) : (
+            <>
+              {calendarFilter ? (
+                calendarFilter.map((calendar) => (
+                  <EventCard
+                    key={calendar.id}
+                    title={calendar.title}
+                    startDate={calendar.startDate}
+                    endDate={calendar.endDate}
+                    description={calendar.description}
+                  />
+                ))
+              ) : (
+                <div>noData</div>
+              )}
+            </>
+          )}
         </Grid>
       </Flex>
     </Stack>

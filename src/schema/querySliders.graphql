@@ -1,9 +1,0 @@
-query {
-  sliders {
-    id
-    title
-    image {
-      url
-    }
-  }
-}
