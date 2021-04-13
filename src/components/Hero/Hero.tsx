@@ -2,8 +2,6 @@ import { FC } from 'react'
 import Slider from '@farbenmeer/react-spring-slider'
 import { IconButton, Skeleton } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import { useQuery } from '@apollo/client'
-import QUERY_SLIDERS from '../../schema/querySliders.graphql'
 
 const images = ['/blank.jpg']
 
@@ -28,9 +26,12 @@ const customArrow = ({ onClick, direction }) =>
     </IconButton>
   )
 
-export const Hero: FC = () => {
-  const { data, loading } = useQuery(QUERY_SLIDERS)
+interface HeroProps {
+  data?: any
+  loading?: boolean
+}
 
+export const Hero: FC<HeroProps> = ({ data, loading }) => {
   return (
     <>
       {loading ? (
@@ -42,14 +43,14 @@ export const Hero: FC = () => {
             hasArrows
             auto={5000}
             bulletStyle={{
-              backgroundColor: '#fff',
+              backgroundColor: '#d4d4d4',
               width: '10px',
               height: '10px',
             }}
             ArrowComponent={customArrow}
           >
-            {data && data.sliders.length > 0
-              ? data.sliders.map((item) => (
+            {data && data.length > 0
+              ? data.map((item) => (
                   <div
                     key={item.id}
                     draggable={false}

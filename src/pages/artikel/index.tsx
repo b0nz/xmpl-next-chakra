@@ -3,21 +3,24 @@ import { FC } from 'react'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import { Container } from '../../components/Container'
-// import { Hero } from "../../components/Hero/Hero";
 import { Flex, Grid, Text } from '@chakra-ui/layout'
-import { NewsCard } from '../../components/Card/NewsCard'
-import { useQuery } from '@apollo/client'
-import QUERY_ARTICLES from '../../schema/queryArticles.graphql'
+import ArticleCard from '../../components/Card/ArticleCard'
+import { gql } from '@apollo/client'
+import client from '../../lib/ApolloClient'
+import { GetStaticProps } from 'next'
 
-const Berita: FC = () => {
-  const { data, loading } = useQuery(QUERY_ARTICLES)
+interface ArtikelProps {
+  articles?: any
+  loading?: boolean
+}
+
+const Artikel: FC<ArtikelProps> = ({ articles, loading }) => {
   return (
     <>
       <Head>
-        <title>Berita | IKBP</title>
+        <title>Artikel | IKBP</title>
       </Head>
       <Header />
-      {/* <Hero /> */}
       <Container minH="100vh">
         <Flex w="full" direction="column" justify="start" mb={3} mt={5}>
           <Text fontSize={['md', 'lg']} fontWeight="bold">
@@ -26,16 +29,15 @@ const Berita: FC = () => {
         </Flex>
         {loading ? (
           <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
-            <NewsCard loading={loading} />
-            <NewsCard loading={loading} />
-            <NewsCard loading={loading} />
+            <ArticleCard loading={loading} />
+            <ArticleCard loading={loading} />
+            <ArticleCard loading={loading} />
           </Grid>
         ) : (
           <Grid gap={6} templateColumns={{ md: 'repeat(3, 1fr)' }}>
-            {data &&
-              data.articles &&
-              data.articles.map((article) => (
-                <NewsCard
+            {articles &&
+              articles.map((article) => (
+                <ArticleCard
                   key={article.slug}
                   title={article.title}
                   image={article.image.url}
@@ -51,4 +53,30 @@ const Berita: FC = () => {
   )
 }
 
-export default Berita
+export const getStaticProps: GetStaticProps = async () => {
+  const { data, loading } = await client.query({
+    query: gql`
+      query Artikel {
+        articles(sort: "publishedAt:DESC") {
+          title
+          description
+          slug
+          publishedAt
+          image {
+            url
+          }
+        }
+      }
+    `,
+  })
+
+  return {
+    props: {
+      articles: data.articles,
+      loading,
+    },
+    revalidate: 1,
+  }
+}
+
+export default Artikel
