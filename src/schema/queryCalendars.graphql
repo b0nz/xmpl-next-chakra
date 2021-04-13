@@ -1,0 +1,8 @@
+query {
+  calendars {
+    title,
+    description,
+    startDate,
+    endDate
+  }
+}

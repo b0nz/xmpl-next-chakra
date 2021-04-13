@@ -1,5 +1,5 @@
 query {
-  articles(limit: 3, sort: "id:DESC") {
+  articles(limit: 6, sort: "id:DESC") {
     title
     description
     slug

@@ -3,7 +3,7 @@ import { Stack, Flex, Text, Link, Grid } from '@chakra-ui/react'
 import { NewsCard } from './Card/NewsCard'
 import { EventCard } from './Card/EventCard'
 import { useQuery } from '@apollo/client'
-import QUERY_ARTICLES from '../schema/queryArticlesLimit3.graphql'
+import QUERY_ARTICLES from '../schema/queryArticlesLimit6.graphql'
 
 export const Main: FC = () => {
   const { data, loading } = useQuery(QUERY_ARTICLES)
