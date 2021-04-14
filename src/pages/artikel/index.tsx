@@ -24,7 +24,7 @@ const Artikel: FC<ArtikelProps> = ({ articles, loading }) => {
       <Container minH="100vh">
         <Flex w="full" direction="column" justify="start" mb={3} mt={5}>
           <Text fontSize={['md', 'lg']} fontWeight="bold">
-            Berita Terbaru
+            Artikel Terbaru
           </Text>
         </Flex>
         {loading ? (

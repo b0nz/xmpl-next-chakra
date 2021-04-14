@@ -1,8 +1,9 @@
 import { FC } from 'react'
-import { Stack, Flex, Text, Link, Grid } from '@chakra-ui/react'
+import { Stack, Flex, Text, Link as L, Grid } from '@chakra-ui/react'
 import ArticleCard from './Card/ArticleCard'
 import { EventCard } from './Card/EventCard'
 import dayjs from 'dayjs'
+import Link from 'next/link'
 
 interface MainProps {
   calendars?: any
@@ -21,8 +22,8 @@ export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
           <Text fontSize={['md', 'lg']} fontWeight="bold">
             Artikel Terbaru
           </Text>
-          <Link color="darkPurple.900" href="/artikel">
-            View All
+          <Link href="/artikel">
+            <L color="darkPurple.900">View All</L>
           </Link>
         </Flex>
         {loading ? (
@@ -54,8 +55,8 @@ export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
           <Text fontSize={['md', 'lg']} fontWeight="bold">
             Agenda
           </Text>
-          <Link color="darkPurple.900" href="#">
-            View All
+          <Link href="/agenda">
+            <L color="darkPurple.900">View All</L>
           </Link>
         </Flex>
         <Grid templateColumns={['1fr', 'repeat(2, 1fr)']} gap={6}>
@@ -71,10 +72,13 @@ export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
                     startDate={calendar.startDate}
                     endDate={calendar.endDate}
                     description={calendar.description}
+                    slug={calendar.slug}
                   />
                 ))
               ) : (
-                <div>noData</div>
+                <Flex justify="center" align="center">
+                  <Text>-</Text>
+                </Flex>
               )}
             </>
           )}

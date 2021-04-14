@@ -21,7 +21,7 @@ import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer'
 import dayjs from 'dayjs'
 import gfm from 'remark-gfm'
 
-interface BeritaProps {
+interface ArtikelProps {
   article?: any
 }
 
@@ -37,7 +37,7 @@ const newTheme = {
   },
 }
 
-const Berita: FC<BeritaProps> = ({ article }) => {
+const Artikel: FC<ArtikelProps> = ({ article }) => {
   return (
     <>
       <Head>
@@ -143,4 +143,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Berita
+export default Artikel
