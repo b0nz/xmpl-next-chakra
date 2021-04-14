@@ -120,7 +120,7 @@ const Agenda: FC<AgendaProps> = ({ calendar }) => {
               </Box>
             )}
           </Box>
-          <Box flex={2} ml={7} mt={[5, 0]}>
+          <Box flex={2} ml={[0, 7]} mt={[5, 0]}>
             <Heading as="h1" size="xl">
               {calendar[0].title}
             </Heading>
