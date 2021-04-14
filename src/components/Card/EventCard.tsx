@@ -4,11 +4,11 @@ import dayjs from 'dayjs'
 import Link from 'next/link'
 
 interface EventCardProps {
-  title?: string;
-  startDate?: string;
-  endDate?: string;
-  description?: string;
-  slug?: string;
+  title?: string
+  startDate?: string
+  endDate?: string
+  description?: string
+  slug?: string
 }
 
 export const EventCard: FC<EventCardProps> = ({
@@ -18,9 +18,13 @@ export const EventCard: FC<EventCardProps> = ({
   description,
   slug,
 }) => {
-  const date = dayjs(startDate);
+  const date = dayjs(startDate)
   return (
-    <Link href={`/agenda/${date.format('YYYY')}/${date.format('MM')}/${date.format('DD')}/${slug}`}>
+    <Link
+      href={`/agenda/${date.format('YYYY')}/${date.format('MM')}/${date.format(
+        'DD'
+      )}/${slug}`}
+    >
       <a>
         <Flex
           bg="white"
@@ -29,7 +33,7 @@ export const EventCard: FC<EventCardProps> = ({
           overflow="hidden"
           flexDirection={['column', 'column', 'row']}
           p={4}
-          _hover={{opacity: 0.8}}
+          _hover={{ opacity: 0.8 }}
         >
           {startDate !== endDate ? (
             <Grid templateColumns="repeat(2, 1fr)" gap={3}>
@@ -108,7 +112,9 @@ export const EventCard: FC<EventCardProps> = ({
             </chakra.h1>
 
             <chakra.p mt={2} mb={3} fontSize="sm" color="gray.600">
-              {description && description.length > 32 ? `${description.slice(0,80)}...`: description}
+              {description && description.length > 32
+                ? `${description.slice(0, 80)}...`
+                : description}
             </chakra.p>
           </Box>
         </Flex>

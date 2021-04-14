@@ -7,14 +7,7 @@ import { Container } from '../../../../../components/Container'
 import { gql } from '@apollo/client'
 import client from '../../../../../lib/ApolloClient'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import {
-  Flex,
-  Heading,
-  Text,
-  Grid,
-  GridItem,
-  Box,
-} from '@chakra-ui/react'
+import { Flex, Heading, Text, Grid, GridItem, Box } from '@chakra-ui/react'
 import ChakraUIRenderer, { defaults } from 'chakra-ui-markdown-renderer'
 import dayjs from 'dayjs'
 import gfm from 'remark-gfm'
@@ -43,7 +36,13 @@ const Agenda: FC<AgendaProps> = ({ calendar }) => {
       </Head>
       <Header />
       <Container minH="100vh">
-        <Flex w="full" direction={['column', 'row']} justify="flex-start" align="center" mt={12}>
+        <Flex
+          w="full"
+          direction={['column', 'row']}
+          justify="flex-start"
+          align="center"
+          mt={12}
+        >
           <Box>
             {calendar[0].startDate !== calendar[0].endDate ? (
               <Grid templateColumns="repeat(2, 1fr)" gap={3}>
@@ -66,7 +65,9 @@ const Agenda: FC<AgendaProps> = ({ calendar }) => {
                       {dayjs(calendar[0].startDate).format('MMM').toUpperCase()}
                     </Text>
                     <Text color="white" fontWeight="600" fontSize="xs">
-                      {dayjs(calendar[0].startDate).format('YYYY').toUpperCase()}
+                      {dayjs(calendar[0].startDate)
+                        .format('YYYY')
+                        .toUpperCase()}
                     </Text>
                   </Box>
                 </Box>
@@ -111,7 +112,9 @@ const Agenda: FC<AgendaProps> = ({ calendar }) => {
                     {dayjs(calendar[0].startDate).format('D')}
                   </Text>
                   <Text color="white" fontWeight="600" fontSize="xl">
-                    {dayjs(calendar[0].startDate).format('MMM YYYY').toUpperCase()}
+                    {dayjs(calendar[0].startDate)
+                      .format('MMM YYYY')
+                      .toUpperCase()}
                   </Text>
                 </Box>
               </Box>
@@ -153,7 +156,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: gql`
       query CalendarSlug {
         calendars {
-          startDate,
+          startDate
           slug
         }
       }
@@ -177,12 +180,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await client.query({
     query: gql`
       query CalendarBySlug($date: String!, $slug: String!) {
-        calendars(where: { slug: $slug, startDate: $date}) {
-          title,
-          description,
-          startDate,
-          endDate,
-          slug,
+        calendars(where: { slug: $slug, startDate: $date }) {
+          title
+          description
+          startDate
+          endDate
+          slug
           content
         }
       }

@@ -4,7 +4,6 @@ import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import { Container } from '../../components/Container'
 import { Flex, Grid, Text } from '@chakra-ui/layout'
-import ArticleCard from '../../components/Card/ArticleCard'
 import { gql } from '@apollo/client'
 import client from '../../lib/ApolloClient'
 import { GetStaticProps } from 'next'
@@ -19,7 +18,7 @@ interface AgendaProps {
 const Agenda: FC<AgendaProps> = ({ calendars, loading }) => {
   const calendarFilter =
     calendars && calendars.filter((f) => dayjs().isBefore(f.startDate))
-  
+
   return (
     <>
       <Head>
@@ -39,21 +38,21 @@ const Agenda: FC<AgendaProps> = ({ calendars, loading }) => {
         ) : (
           <Grid gap={6} templateColumns="repeat(2, 1fr)">
             {calendarFilter ? (
-                calendarFilter.map((calendar) => (
-                  <EventCard
-                    key={calendar.id}
-                    title={calendar.title}
-                    startDate={calendar.startDate}
-                    endDate={calendar.endDate}
-                    description={calendar.description}
-                    slug={calendar.slug}
-                  />
-                ))
-              ) : (
-                <Flex justify="center" align="center">
-                  <Text>-</Text>
-                </Flex>
-              )}
+              calendarFilter.map((calendar) => (
+                <EventCard
+                  key={calendar.id}
+                  title={calendar.title}
+                  startDate={calendar.startDate}
+                  endDate={calendar.endDate}
+                  description={calendar.description}
+                  slug={calendar.slug}
+                />
+              ))
+            ) : (
+              <Flex justify="center" align="center">
+                <Text>-</Text>
+              </Flex>
+            )}
           </Grid>
         )}
       </Container>

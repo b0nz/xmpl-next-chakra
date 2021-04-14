@@ -23,9 +23,7 @@ export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
             Artikel Terbaru
           </Text>
           <Link href="/artikel">
-            <L color="darkPurple.900">
-              View All
-            </L>
+            <L color="darkPurple.900">View All</L>
           </Link>
         </Flex>
         {loading ? (
@@ -58,9 +56,7 @@ export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
             Agenda
           </Text>
           <Link href="/agenda">
-            <L color="darkPurple.900">
-              View All
-            </L>
+            <L color="darkPurple.900">View All</L>
           </Link>
         </Flex>
         <Grid templateColumns={['1fr', 'repeat(2, 1fr)']} gap={6}>
