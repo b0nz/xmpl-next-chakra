@@ -117,12 +117,13 @@ export const getStaticProps: GetStaticProps = async () => {
             url
           }
         }
-        calendars(limit: 9, sort: "published_at:DESC") {
+        calendars(limit: 9, sort: "endDate:ASC") {
           id
           title
           description
           startDate
           endDate
+          slug
         }
         sliders {
           id
