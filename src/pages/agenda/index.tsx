@@ -36,7 +36,15 @@ const Agenda: FC<AgendaProps> = ({ calendars, loading }) => {
             <Text>loading...</Text>
           </Flex>
         ) : (
-          <Grid gap={6} templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]}>
+          <Grid
+            gap={6}
+            templateColumns={[
+              'repeat(1, 1fr)',
+              'repeat(1, 1fr)',
+              'repeat(1, 1fr)',
+              'repeat(2, 1fr)',
+            ]}
+          >
             {calendarFilter ? (
               calendarFilter.map((calendar) => (
                 <EventCard
