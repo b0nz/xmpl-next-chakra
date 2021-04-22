@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
@@ -8,7 +8,7 @@ import theme from '../theme'
 import 'dayjs/locale/id'
 import 'nprogress/nprogress.css'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { initGA, logPageView } from '../lib/analytics'
+import * as gtag from '../lib/gtag'
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BASE_URL}/graphql`,
@@ -35,13 +35,16 @@ const Fonts = () => (
 )
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter()
   useEffect(() => {
-    if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
     }
-    logPageView()
-  });
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <ApolloProvider client={client}>
