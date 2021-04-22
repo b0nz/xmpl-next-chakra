@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import Router from 'next/router'
 import NProgress from 'nprogress'
@@ -8,6 +8,7 @@ import theme from '../theme'
 import 'dayjs/locale/id'
 import 'nprogress/nprogress.css'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { initGA, logPageView } from '../lib/analytics'
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BASE_URL}/graphql`,
@@ -34,6 +35,14 @@ const Fonts = () => (
 )
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  useEffect(() => {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
+  });
+
   return (
     <ApolloProvider client={client}>
       <ChakraProvider resetCSS theme={theme}>
