@@ -13,7 +13,7 @@ interface MainProps {
 
 export const Main: FC<MainProps> = ({ calendars, articles, loading }) => {
   const calendarFilter =
-    calendars && calendars.filter((f) => dayjs().isBefore(f.startDate))
+    calendars && calendars.filter((f) => dayjs().isSameOrBefore(f.startDate))
 
   return (
     <Stack direction="column" spacing={10} py={10}>

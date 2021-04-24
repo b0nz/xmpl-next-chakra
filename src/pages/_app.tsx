@@ -2,6 +2,8 @@ import { FC, useEffect } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
+import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import { AppProps } from 'next/app'
 import { Global } from '@emotion/react'
 import theme from '../theme'
@@ -9,6 +11,8 @@ import 'dayjs/locale/id'
 import 'nprogress/nprogress.css'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import * as gtag from '../lib/gtag'
+
+dayjs.extend(isSameOrBefore)
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BASE_URL}/graphql`,

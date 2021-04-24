@@ -82,7 +82,7 @@ const Artikel: FC<ArtikelProps> = ({ article }) => {
               Category
             </Heading>
             <HStack spacing={4} mt={3}>
-              <Tag variant="solid">{article[0].category.name}</Tag>
+              {article[0].tags && article[0].tags.map(t => <Tag variant="solid" key={t.slug}>{t.name}</Tag>)}
             </HStack>
           </GridItem>
         </Grid>
@@ -121,8 +121,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           title
           publishedAt
           content
-          category {
+          tag {
             name
+            slug
           }
           image {
             url

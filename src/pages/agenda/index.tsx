@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { FC } from 'react'
+import dayjs from 'dayjs'
 import { Footer } from '../../components/Footer'
 import Header from '../../components/Header'
 import { Container } from '../../components/Container'
@@ -7,7 +8,6 @@ import { Flex, Grid, Text } from '@chakra-ui/layout'
 import { gql } from '@apollo/client'
 import client from '../../lib/ApolloClient'
 import { GetStaticProps } from 'next'
-import dayjs from 'dayjs'
 import { EventCard } from '../../components/Card/EventCard'
 
 interface AgendaProps {
@@ -17,7 +17,7 @@ interface AgendaProps {
 
 const Agenda: FC<AgendaProps> = ({ calendars, loading }) => {
   const calendarFilter =
-    calendars && calendars.filter((f) => dayjs().isBefore(f.startDate))
+    calendars && calendars.filter((f) => dayjs().isSameOrBefore(f.startDate))
 
   return (
     <>
